@@ -12,8 +12,7 @@ BBOX_COLOR = (0, 255, 0)  # green
 
 
 def parse_args():
-    """Parse input arguments."""
-    desc = 'Capture and display live camera video, while doing real-time face detection with TrtMtcnn on Jetson Nano'
+    desc = 'Capture and display live camera video'
     parser = argparse.ArgumentParser(description=desc)
     parser = add_camera_args(parser)
     parser.add_argument('--minsize', type=int, default=40, help='minsize (in pixels) for detection [40]')
@@ -29,8 +28,8 @@ def show_faces(img, boxes, landmarks):
 
 def detect_faces(cam, mtcnn, minsize=40):
     full_scrn = False
-    fps = 0.0
-    tic = time.time()
+    # fps = 0.0
+    # tic = time.time()
 
     while True:
         if cv2.getWindowProperty(WINDOW_NAME, 0) < 0:
