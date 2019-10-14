@@ -64,7 +64,7 @@ def main():
     cam.stop()
     cam.release()
     cv2.destroyAllWindows()
-    del (mtcnn)
+    del mtcnn
 
 
 if __name__ == '__main__':
