@@ -13,7 +13,6 @@ from utils.camera import add_camera_args, Camera
 from utils.display import open_window, set_display
 from utils.mtcnn import TrtMtcnn
 
-
 WINDOW_NAME = 'TrtMtcnnDemo'
 BBOX_COLOR = (0, 255, 0)  # green
 
@@ -37,7 +36,7 @@ def show_faces(img, boxes, landmarks):
         x1, y1, x2, y2 = int(bb[0]), int(bb[1]), int(bb[2]), int(bb[3])
         cv2.rectangle(img, (x1, y1), (x2, y2), BBOX_COLOR, 2)
         for j in range(5):
-            cv2.circle(img, (int(ll[j]), int(ll[j+5])), 2, BBOX_COLOR, 2)
+            cv2.circle(img, (int(ll[j]), int(ll[j + 5])), 2, BBOX_COLOR, 2)
 
 
 def show_fps(img, fps):
@@ -68,7 +67,7 @@ def loop_and_detect(cam, mtcnn, minsize):
             toc = time.time()
             curr_fps = 1.0 / (toc - tic)
             # calculate an exponentially decaying average of fps number
-            fps = curr_fps if fps == 0.0 else (fps*0.95 + curr_fps*0.05)
+            fps = curr_fps if fps == 0.0 else (fps * 0.95 + curr_fps * 0.05)
             tic = toc
         key = cv2.waitKey(1)
         if key == 27:  # ESC key: quit program
@@ -88,15 +87,14 @@ def main():
     mtcnn = TrtMtcnn()
 
     cam.start()
-    open_window(WINDOW_NAME, args.image_width, args.image_height,
-                'Camera TensorRT MTCNN Demo for Jetson Nano')
+    open_window(WINDOW_NAME, args.image_width, args.image_height, 'Camera TensorRT MTCNN Demo for Jetson Nano')
     loop_and_detect(cam, mtcnn, args.minsize)
 
     cam.stop()
     cam.release()
     cv2.destroyAllWindows()
 
-    del(mtcnn)
+    del (mtcnn)
 
 
 if __name__ == '__main__':

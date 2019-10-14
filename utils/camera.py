@@ -6,7 +6,6 @@ addition, this Camera class is further extended to take a video
 file or an image file as input.
 """
 
-
 import logging
 import threading
 
@@ -17,12 +16,10 @@ import cv2
 def add_camera_args(parser):
     """Add parser augument for camera options."""
     parser.add_argument('--file', dest='use_file',
-                        help='use a video file as input (remember to '
-                        'also set --filename)',
+                        help='use a video file as input (remember to also set --filename)',
                         action='store_true')
     parser.add_argument('--image', dest='use_image',
-                        help='use an image file as input (remember to '
-                        'also set --filename)',
+                        help='use an image file as input (remember to also set --filename)',
                         action='store_true')
     parser.add_argument('--filename', dest='filename',
                         help='video file name, e.g. test.mp4',
@@ -186,7 +183,7 @@ class Camera():
         if self.args.use_file:
             _, img = self.cap.read()
             if img is None:
-                #logging.warning('grab_img(): cap.read() returns None...')
+                # logging.warning('grab_img(): cap.read() returns None...')
                 # looping around
                 self.cap.release()
                 self.cap = cv2.VideoCapture(self.args.filename)
