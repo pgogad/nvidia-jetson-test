@@ -1,8 +1,8 @@
-import sys
-import time
 import argparse
+import sys
 
 import cv2
+
 from utils.camera import add_camera_args, Camera
 from utils.display import open_window, set_display
 from utils.mtcnn import TrtMtcnn
