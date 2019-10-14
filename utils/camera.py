@@ -15,35 +15,26 @@ import cv2
 
 def add_camera_args(parser):
     """Add parser augument for camera options."""
-    parser.add_argument('--file', dest='use_file',
-                        help='use a video file as input (remember to also set --filename)',
+    parser.add_argument('--file', dest='use_file', help='use a video file as input (remember to also set --filename)',
                         action='store_true')
     parser.add_argument('--image', dest='use_image',
                         help='use an image file as input (remember to also set --filename)',
                         action='store_true')
-    parser.add_argument('--filename', dest='filename',
-                        help='video file name, e.g. test.mp4',
+    parser.add_argument('--filename', dest='filename', help='video file name, e.g. test.mp4',
                         default=None, type=str)
-    parser.add_argument('--rtsp', dest='use_rtsp',
-                        help='use IP CAM (remember to also set --uri)',
+    parser.add_argument('--rtsp', dest='use_rtsp', help='use IP CAM (remember to also set --uri)',
                         action='store_true')
-    parser.add_argument('--uri', dest='rtsp_uri',
-                        help='RTSP URI, e.g. rtsp://192.168.1.64:554',
+    parser.add_argument('--uri', dest='rtsp_uri', help='RTSP URI, e.g. rtsp://192.168.1.64:554',
                         default=None, type=str)
-    parser.add_argument('--latency', dest='rtsp_latency',
-                        help='latency in ms for RTSP [200]',
+    parser.add_argument('--latency', dest='rtsp_latency', help='latency in ms for RTSP [200]',
                         default=200, type=int)
-    parser.add_argument('--usb', dest='use_usb',
-                        help='use USB webcam (remember to also set --vid)',
+    parser.add_argument('--usb', dest='use_usb', help='use USB webcam (remember to also set --vid)',
                         action='store_true')
-    parser.add_argument('--vid', dest='video_dev',
-                        help='device # of USB webcam (/dev/video?) [0]',
+    parser.add_argument('--vid', dest='video_dev', help='device # of USB webcam (/dev/video?) [0]',
                         default=0, type=int)
-    parser.add_argument('--width', dest='image_width',
-                        help='image width [640]',
+    parser.add_argument('--width', dest='image_width', help='image width [640]',
                         default=640, type=int)
-    parser.add_argument('--height', dest='image_height',
-                        help='image height [480]',
+    parser.add_argument('--height', dest='image_height', help='image height [480]',
                         default=480, type=int)
     return parser
 
@@ -101,7 +92,7 @@ def grab_img(cam):
     cam.thread_running = False
 
 
-class Camera():
+class Camera:
     """Camera class which supports reading images from theses video sources:
 
     1. Video file
