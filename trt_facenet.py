@@ -60,6 +60,7 @@ def main():
     mtcnn = TrtMtcnn()
     cam.start()
     open_window(WINDOW_NAME, width=640, height=480, title='MTCNN Window')
+    detect_faces(cam, mtcnn)
 
     cam.stop()
     cam.release()
