@@ -19,6 +19,7 @@ import tensorflow as tf
 from facenet.fr_utils import *
 from facenet.inception_model import *
 
+BASE_DIR = os.path.dirname(__file__)
 np.set_printoptions(threshold=np.nan)
 
 FRmodel = faceRecoModel(input_shape=(3, 96, 96))
@@ -31,7 +32,6 @@ def triplet_loss(y_true, y_pred, alpha=0.2):
     neg_dist = tf.reduce_sum(tf.squared_difference(anchor, negative), axis=-1)
     basic_loss = tf.add(tf.subtract(pos_dist, neg_dist), alpha)
     loss = tf.reduce_sum(tf.maximum(basic_loss, 0.0))
-
     return loss
 
 
@@ -39,13 +39,13 @@ FRmodel.compile(optimizer='adam', loss=triplet_loss, metrics=['accuracy'])
 load_weights_from_FaceNet(FRmodel)
 
 database = {}
-database["siddharth"] = img_to_encoding("train/sid1.png", FRmodel)
-database["jay"] = img_to_encoding("train/jay1.jpg", FRmodel)
+database["pawan"] = img_to_encoding(os.path.join(BASE_DIR, "images", "pawan1.jpg"), FRmodel)
+database["ben"] = img_to_encoding(os.path.join(BASE_DIR, "images", "ben2.jpg"), FRmodel)
 
 
-def verify(image_path, identity, database, model):
+def verify(image_path, identity, db, model):
     encoding = img_to_encoding(image_path, model)
-    dist = np.linalg.norm(encoding - database[identity])
+    dist = np.linalg.norm(encoding - db[identity])
     if dist < 0.7:
         print("It's " + str(identity) + ", welcome home!")
         door_open = True
@@ -56,15 +56,16 @@ def verify(image_path, identity, database, model):
     return dist, door_open
 
 
-verify("images/sid1.jpg", "Siddharth", database, FRmodel)
-verify("images/jay.jpg", "Jay", database, FRmodel)
+verify(os.path.join(BASE_DIR, "test", "pawan3.jpg"), "Pawan", database, FRmodel)
+verify(os.path.join(BASE_DIR, "test", "ben3.jpg"), "Ben", database, FRmodel)
 
 
-def who_is_it(image_path, database, model):
+def who_is_it(image_path, db, model):
     encoding = img_to_encoding(image_path, model)
     min_dist = 100
-    for (name) in database:
-        dist = np.linalg.norm(encoding - database[name])
+    identity = 'unknown'
+    for (name) in db:
+        dist = np.linalg.norm(encoding - db[name])
         if dist < min_dist:
             min_dist = dist
             identity = name
@@ -77,4 +78,4 @@ def who_is_it(image_path, database, model):
     return min_dist, identity
 
 
-who_is_it("images/camera_0.jpg", database, FRmodel)
+who_is_it(os.path.join(BASE_DIR, "images", "pawan2.jpg"), database, FRmodel)
