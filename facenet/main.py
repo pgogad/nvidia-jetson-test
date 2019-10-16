@@ -1,7 +1,9 @@
 import tensorflow as tf
 
 tf.keras.backend.set_image_data_format('channels_first')
-from .inception_model import *
+# from inception_model import *
+
+from facenet.inception_model import *
 
 BASE_DIR = os.path.dirname(__file__)
 np.set_printoptions(threshold=np.nan)

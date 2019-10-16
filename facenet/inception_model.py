@@ -1,15 +1,7 @@
-import tensorflow as tf
-import numpy as np
-import os
-from numpy import genfromtxt
-import tensorflow as tf
 from keras import backend as K
-from keras.layers import Conv2D, ZeroPadding2D, Activation, Input, concatenate
-from keras.models import Model
-from keras.layers.normalization import BatchNormalization
-from keras.layers.pooling import MaxPooling2D, AveragePooling2D
 from keras.layers.core import Lambda, Flatten, Dense
-from .fr_utils import *
+
+from facenet.fr_utils import *
 
 
 def inception_block_1a(X):
