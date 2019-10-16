@@ -2,6 +2,7 @@ import tensorflow as tf
 import numpy as np
 import os
 from numpy import genfromtxt
+import tensorflow as tf
 from keras import backend as K
 from keras.layers import Conv2D, ZeroPadding2D, Activation, Input, concatenate
 from keras.models import Model

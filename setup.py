@@ -40,6 +40,6 @@ setup(
             libraries=libraries,
             extra_compile_args=['-O3', '-std=c++11'] + include_dirs
         ),
-        compiler_directives={'language_level': '3'}
+        compiler_directives={'language_level': '3'}, requires=['keras']
     )
 )

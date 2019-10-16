@@ -9,7 +9,9 @@ from keras.initializers import glorot_uniform
 from keras.engine.topology import Layer
 from keras import backend as K
 
-K.set_image_data_format('channels_first')
+import tensorflow as tf
+
+tf.keras.backend.set_image_data_format('channels_first')
 import cv2
 import os
 import numpy as np
