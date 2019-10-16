@@ -9,7 +9,7 @@ from keras.models import Model
 from keras.layers.normalization import BatchNormalization
 from keras.layers.pooling import MaxPooling2D, AveragePooling2D
 from keras.layers.core import Lambda, Flatten, Dense
-from facenet.fr_utils import *
+from .fr_utils import *
 
 
 def inception_block_1a(X):
